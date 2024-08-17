@@ -1,42 +1,44 @@
+
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Entity : MonoBehaviour
 {
     [SerializeField] private Stats _stats;
-    [SerializeField] private Spawner _spawner;
+    [SerializeField] private Timer _timer;
 
-     private Entity _target;
-    private Timer _timer;
+    private Entity _target;
 
-    [Header("Stats")]
+
     private int _health;
     private int _armor;
     private int _damage;
     private float _damageReductionPercentage;
     private float _delayAttcak;
 
+    public Action Died;
+
     public int ChanceSpawn => _stats.ChanceSpawn;
 
     private void Awake()
     {
         InitStats();
-        _timer = GetComponent<Timer>();
-        _timer.StartWork(_delayAttcak);
     }
 
-    private void OnEnable()
+    private void Start()
     {
         _timer.TimeEmpty += Attack;
-        _spawner.EnemySpawned += SetTarget;
     }
 
     private void OnDisable()
     {
         _timer.TimeEmpty -= Attack;
-        _spawner.EnemySpawned -= SetTarget;
+    }
+
+    public void SetTarget(Transform target)
+    {
+        _target = target.GetComponent<Entity>();
+        _timer.StartWork(_delayAttcak);
     }
 
     public void ApplyDamage(int damage)
@@ -60,6 +62,8 @@ public class Entity : MonoBehaviour
             _health = 0;
             Die();
         }
+
+        print(name + " apply damage: " + finalDamage);
     }
 
     private void InitStats()
@@ -73,16 +77,18 @@ public class Entity : MonoBehaviour
 
     private void Attack()
     {
-        _target.ApplyDamage(_damage);
+        if (_target != null)
+        {
+            _target.ApplyDamage(_damage);
+            _timer.StartWork(_delayAttcak);
+            print(name + " Attacked: " + _target.name);
+        }
     }
 
     private void Die()
     {
-        gameObject.SetActive(false);
-    }
-
-    private void SetTarget(Transform target)
-    {
-        _target = target.GetComponent<Enemy>();
+        Died?.Invoke();
+        print(name + " is died");
+        Destroy(gameObject);
     }
 }

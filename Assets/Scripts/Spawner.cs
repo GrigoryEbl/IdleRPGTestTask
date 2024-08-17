@@ -7,18 +7,32 @@ public class Spawner : MonoBehaviour
 {
     [SerializeField] private Enemy[] _enemyPrefabs;
     [SerializeField] private Transform _spawnPoint;
+    [SerializeField] private Transform _target;
+
+    private Enemy _spawnedEnemy;
 
     public Action<Transform> EnemySpawned;
 
-    private void Awake()
+    private void Start()
     {
         Spawn();
     }
 
+    private void OnDisable()
+    {
+        _spawnedEnemy.Died -= Spawn;
+    }
+
     private void Spawn()
     {
-        var enemy = Instantiate(_enemyPrefabs[GetRandomChance()], _spawnPoint, transform);
+        _spawnedEnemy = _enemyPrefabs[GetRandomChance()];
+
+        var enemy = Instantiate(_spawnedEnemy, _spawnPoint, transform);
+        enemy.SetTarget(_target);
+
         EnemySpawned?.Invoke(enemy.transform);
+
+        enemy.Died += Spawn;
     }
 
     private int GetRandomChance()

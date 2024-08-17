@@ -14,5 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _health: 10
   _armor: 5
+  _damageReductionPercentage: 0.2
   _damage: 3
+  _delayAttack: 3
   _chanceSpawn: 20
