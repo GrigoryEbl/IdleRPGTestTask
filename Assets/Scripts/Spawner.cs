@@ -8,8 +8,10 @@ public class Spawner : MonoBehaviour
     [SerializeField] private Enemy[] _enemyPrefabs;
     [SerializeField] private Transform _spawnPoint;
     [SerializeField] private Transform _target;
-
+    [SerializeField] private Timer _timer;
+    
     private Enemy _spawnedEnemy;
+    private float _spawnDelay = 2;
 
     public Action<Transform> EnemySpawned;
 
@@ -18,9 +20,15 @@ public class Spawner : MonoBehaviour
         Spawn();
     }
 
+    private void OnEnable()
+    {
+        _timer.TimeEmpty += Spawn;
+    }
+
     private void OnDisable()
     {
-        _spawnedEnemy.Died -= Spawn;
+        _spawnedEnemy.Died -= OnEnemyDied;
+        _timer.TimeEmpty -= Spawn;
     }
 
     private void Spawn()
@@ -32,7 +40,7 @@ public class Spawner : MonoBehaviour
 
         EnemySpawned?.Invoke(enemy.transform);
 
-        enemy.Died += Spawn;
+        enemy.Died += OnEnemyDied;
     }
 
     private int GetRandomChance()
@@ -55,7 +63,11 @@ public class Spawner : MonoBehaviour
         int maxPercent = 100;
 
         int percent = UnityEngine.Random.Range(0, maxPercent);
-        print("Percent spawn: " + percent);
         return percent;
+    }
+
+    private void OnEnemyDied()
+    {
+        _timer.StartWork(_spawnDelay);
     }
 }

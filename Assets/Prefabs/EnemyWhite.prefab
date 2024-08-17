@@ -96,6 +96,7 @@ GameObject:
   - component: {fileID: 1672980069674159790}
   - component: {fileID: 1672980069674159791}
   - component: {fileID: 375689654176120250}
+  - component: {fileID: 3544576725918400313}
   m_Layer: 0
   m_Name: EnemyWhite
   m_TagString: Untagged
@@ -198,6 +199,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d6338b379a1a8be49b92b3184d6840b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!50 &3544576725918400313
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1672980069674159788}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &3869443591185319666
 GameObject:
   m_ObjectHideFlags: 0
@@ -233,7 +255,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.56705, y: -1.208}
+  m_AnchoredPosition: {x: 0, y: -1.7588999}
   m_SizeDelta: {x: 1.1341, y: 0.5509}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3122450006772075762
@@ -368,8 +390,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.56705, y: -1.208}
-  m_SizeDelta: {x: 1.1341, y: 0.5509}
+  m_AnchoredPosition: {x: -0.000000059605, y: -1.208}
+  m_SizeDelta: {x: 1.8835, y: 0.5509}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2917761632969609357
 CanvasRenderer:
@@ -518,6 +540,7 @@ GameObject:
   - component: {fileID: 6238182212293918182}
   - component: {fileID: 6490754367214436708}
   - component: {fileID: 8923057575576056123}
+  - component: {fileID: 8303794738158739630}
   m_Layer: 0
   m_Name: Canvas
   m_TagString: Untagged
@@ -625,6 +648,20 @@ MonoBehaviour:
   _entity: {fileID: 1672980069674159791}
   _healthText: {fileID: 4073605675627622551}
   _armorText: {fileID: 8080748868317714709}
+--- !u!114 &8303794738158739630
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6536950552871967730}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d0e8e5f0779a4d45b960d27f48e6eb3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _entity: {fileID: 1672980069674159791}
+  _slider: {fileID: 4428221058681916938}
 --- !u!1 &6574054971515397606
 GameObject:
   m_ObjectHideFlags: 0

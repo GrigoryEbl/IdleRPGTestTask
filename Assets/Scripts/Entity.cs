@@ -7,9 +7,9 @@ public class Entity : MonoBehaviour
     [SerializeField] private Stats _stats;
     [SerializeField] private Timer _timer;
 
+    private Rigidbody2D _rigidbody2d;
     private Entity _target;
-
-
+    
     private int _health;
     private int _armor;
     private int _damage;
@@ -20,12 +20,14 @@ public class Entity : MonoBehaviour
     public Action<int> ArmorChanged;
     public Action Died;
 
+    public int MaxHealth => _stats.Health;
     public float DelayAttack => _delayAttcak;
     public int ChanceSpawn => _stats.ChanceSpawn;
 
     private void Awake()
     {
         InitStats();
+        _rigidbody2d = GetComponent<Rigidbody2D>();
     }
 
     private void Start()
@@ -64,13 +66,11 @@ public class Entity : MonoBehaviour
         _health -= (int)finalDamage;
         HealthChanged?.Invoke(_health);
 
-        if (_health < 0)
+        if (_health <= 0)
         {
             _health = 0;
             Die();
         }
-
-        print(name + " apply damage: " + finalDamage);
     }
 
     private void InitStats()
@@ -88,17 +88,14 @@ public class Entity : MonoBehaviour
         {
             _target.ApplyDamage(_damage);
             _timer.StartWork(_delayAttcak);
-            print(name + " Attacked: " + _target.name);
         }
     }
 
     private void Die()
     {
         Died?.Invoke();
-        print(name + " is died");
-
-        transform.rotation = Quaternion.Euler(0f, 0f, 90f);
+        _rigidbody2d.isKinematic = false;
         enabled = false;
-        Destroy(gameObject);
+        Destroy(gameObject,2);
     }
 }

@@ -16,5 +16,5 @@ MonoBehaviour:
   _armor: 2
   _damageReductionPercentage: 0.2
   _damage: 2
-  _delayAttack: 2
+  _delayAttack: 3
   _chanceSpawn: 60

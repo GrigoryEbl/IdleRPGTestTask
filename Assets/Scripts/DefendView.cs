@@ -13,6 +13,7 @@ public class DefendView : MonoBehaviour
     {
         _entity.HealthChanged += OnHealthChanged;
         _entity.ArmorChanged += OnArmorChanged;
+        _healthText.text = $"{_entity.MaxHealth}";
     }
 
     private void OnDisable()
@@ -23,12 +24,11 @@ public class DefendView : MonoBehaviour
 
     private void OnHealthChanged(int value)
     {
-        _healthText.text = value.ToString();
+        _healthText.text = $"Health: {value} / {_entity.MaxHealth}";
     }
 
     private void OnArmorChanged(int value)
     {
-        _armorText.text = value.ToString();
+        _armorText.text =$"Armor: {value}";
     }
-
 }
