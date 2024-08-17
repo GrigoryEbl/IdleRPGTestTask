@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,6 +8,8 @@ public class Spawner : MonoBehaviour
     [SerializeField] private Enemy[] _enemyPrefabs;
     [SerializeField] private Transform _spawnPoint;
 
+    public Action<Transform> EnemySpawned;
+
     private void Awake()
     {
         Spawn();
@@ -15,6 +18,7 @@ public class Spawner : MonoBehaviour
     private void Spawn()
     {
         var enemy = Instantiate(_enemyPrefabs[GetRandomChance()], _spawnPoint, transform);
+        EnemySpawned?.Invoke(enemy.transform);
     }
 
     private int GetRandomChance()
@@ -36,7 +40,7 @@ public class Spawner : MonoBehaviour
     {
         int maxPercent = 100;
 
-        int percent = Random.Range(0, maxPercent);
+        int percent = UnityEngine.Random.Range(0, maxPercent);
         print("Percent spawn: " + percent);
         return percent;
     }
