@@ -5,13 +5,12 @@ using UnityEngine;
 
 public class Timer : MonoBehaviour
 {
+    private float _time;
     private bool _isWork;
 
     public Action TimeEmpty;
 
-    private float _time;
-
-    public bool IsWork => _isWork;
+    public float CurrentTime => _time;
 
     private void Update()
     {

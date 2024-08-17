@@ -16,8 +16,11 @@ public class Entity : MonoBehaviour
     private float _damageReductionPercentage;
     private float _delayAttcak;
 
+    public Action<int> HealthChanged;
+    public Action<int> ArmorChanged;
     public Action Died;
 
+    public float DelayAttack => _delayAttcak;
     public int ChanceSpawn => _stats.ChanceSpawn;
 
     private void Awake()
@@ -28,6 +31,8 @@ public class Entity : MonoBehaviour
     private void Start()
     {
         _timer.TimeEmpty += Attack;
+        HealthChanged?.Invoke(_health);
+        ArmorChanged?.Invoke(_armor);
     }
 
     private void OnDisable()
@@ -46,6 +51,7 @@ public class Entity : MonoBehaviour
         float absorbedDamage = damage * _damageReductionPercentage;
 
         _armor -= (int)absorbedDamage;
+        ArmorChanged?.Invoke(_armor);
 
         float finalDamage = damage - (int)absorbedDamage;
 
@@ -56,6 +62,7 @@ public class Entity : MonoBehaviour
         }
 
         _health -= (int)finalDamage;
+        HealthChanged?.Invoke(_health);
 
         if (_health < 0)
         {
@@ -89,6 +96,9 @@ public class Entity : MonoBehaviour
     {
         Died?.Invoke();
         print(name + " is died");
+
+        transform.rotation = Quaternion.Euler(0f, 0f, 90f);
+        enabled = false;
         Destroy(gameObject);
     }
 }
