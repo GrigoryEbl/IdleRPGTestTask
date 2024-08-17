@@ -9,6 +9,7 @@ public class Entity : MonoBehaviour
     private int _health;
     private int _armor;
     private int _damage;
+    private float _delayAttcak;
 
     public int ChanceSpawn => _stats.ChanceSpawn;
 
@@ -22,5 +23,6 @@ public class Entity : MonoBehaviour
         _health = _stats.Health;
         _armor = _stats.Armor;
         _damage = _stats.Damage;
+        _delayAttcak = _stats.DelayAttack;
     }
 }
