@@ -6,9 +6,9 @@ using UnityEngine;
 public class Entity : MonoBehaviour
 {
     [SerializeField] private Stats _stats;
-    [SerializeField] private Entity _target;
     [SerializeField] private Spawner _spawner;
 
+     private Entity _target;
     private Timer _timer;
 
     [Header("Stats")]
@@ -27,9 +27,17 @@ public class Entity : MonoBehaviour
         _timer.StartWork(_delayAttcak);
     }
 
-    private void OnEnable() => _timer.TimeEmpty += Attack;
+    private void OnEnable()
+    {
+        _timer.TimeEmpty += Attack;
+        _spawner.EnemySpawned += SetTarget;
+    }
 
-    private void OnDisable() => _timer.TimeEmpty -= Attack;
+    private void OnDisable()
+    {
+        _timer.TimeEmpty -= Attack;
+        _spawner.EnemySpawned -= SetTarget;
+    }
 
     public void ApplyDamage(int damage)
     {
@@ -71,5 +79,10 @@ public class Entity : MonoBehaviour
     private void Die()
     {
         gameObject.SetActive(false);
+    }
+
+    private void SetTarget(Transform target)
+    {
+        _target = target.GetComponent<Enemy>();
     }
 }
