@@ -4,15 +4,19 @@ using UnityEngine;
 
 public class Spawner : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField] private Enemy _enemyPrefab;
+    [SerializeField] private Transform _spawnPoint;
+
+    private bool _canSpawn = true;
+
+    private void Awake()
     {
-        
+        Spawn();
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Spawn()
     {
-        
+        var enemy = Instantiate(_enemyPrefab, _spawnPoint, transform);
+        _canSpawn = false;
     }
 }
