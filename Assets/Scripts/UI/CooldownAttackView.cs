@@ -20,5 +20,4 @@ public class CooldownAttackView : MonoBehaviour
     {
         _slider.value = _timer.CurrentTime;
     }
-
 }

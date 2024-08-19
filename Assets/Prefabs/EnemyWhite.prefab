@@ -97,6 +97,7 @@ GameObject:
   - component: {fileID: 1672980069674159791}
   - component: {fileID: 375689654176120250}
   - component: {fileID: 3544576725918400313}
+  - component: {fileID: 4801779947019299109}
   m_Layer: 0
   m_Name: EnemyWhite
   m_TagString: Untagged
@@ -222,6 +223,19 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &4801779947019299109
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1672980069674159788}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 28d6f411e5973794abaf47ba8cc058b3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _stats: {fileID: 11400000, guid: 876aa13c0d7652a48ad0074f90998ebc, type: 2}
 --- !u!1 &3869443591185319666
 GameObject:
   m_ObjectHideFlags: 0
@@ -647,7 +661,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 45f6c58925e8dbe4390626ee14097f34, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _entity: {fileID: 1672980069674159791}
   _healthText: {fileID: 4073605675627622551}
   _armorText: {fileID: 8080748868317714709}
 --- !u!114 &8303794738158739630

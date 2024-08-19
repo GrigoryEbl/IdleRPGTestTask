@@ -263,6 +263,7 @@ GameObject:
   - component: {fileID: 1672980069674159791}
   - component: {fileID: 1988357777873738875}
   - component: {fileID: -2116368912732316848}
+  - component: {fileID: -1134462407999857467}
   m_Layer: 0
   m_Name: EnemyBlack
   m_TagString: Untagged
@@ -388,6 +389,19 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &-1134462407999857467
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1672980069674159788}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 28d6f411e5973794abaf47ba8cc058b3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _stats: {fileID: 11400000, guid: fdf8311779086f840a3eb6ca0511318f, type: 2}
 --- !u!1 &2292971715653937394
 GameObject:
   m_ObjectHideFlags: 0
@@ -889,7 +903,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 45f6c58925e8dbe4390626ee14097f34, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _entity: {fileID: 1672980069674159791}
   _healthText: {fileID: 2569444472836757909}
   _armorText: {fileID: 4170171890708739356}
 --- !u!114 &3828190993894338962
