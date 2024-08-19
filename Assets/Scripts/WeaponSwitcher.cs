@@ -8,6 +8,7 @@ public class WeaponSwitcher : MonoBehaviour
     [SerializeField] private Weapon _bow;
 
     private Player _player;
+    private float _delay = 2f;
 
     private void Awake()
     {
@@ -20,8 +21,15 @@ public class WeaponSwitcher : MonoBehaviour
         _player.ChangeWeapon(_sword);
     }
 
-    public void Switch()
+    public void SwitchWeapon()
     {
+        StartCoroutine(Process());
+    }
+
+    private IEnumerator Process()
+    {
+        yield return new WaitForSeconds(_delay);
+
         if (_player.CurrentWeapon == _sword)
         {
             _sword.gameObject.SetActive(false);
