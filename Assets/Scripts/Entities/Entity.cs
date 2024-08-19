@@ -2,10 +2,12 @@
 using System;
 using UnityEngine;
 
+[RequireComponent(typeof(Rigidbody2D))]
 public class Entity : MonoBehaviour
 {
     [SerializeField] private Stats _stats;
     [SerializeField] private Timer _timer;
+    [SerializeField] private Weapon _weapon;
 
     private Rigidbody2D _rigidbody2d;
     private Entity _target;
@@ -14,14 +16,13 @@ public class Entity : MonoBehaviour
     private int _armor;
     private int _damage;
     private float _damageReductionPercentage;
-    private float _delayAttcak;
 
     public Action<int> HealthChanged;
     public Action<int> ArmorChanged;
     public Action Died;
 
     public int MaxHealth => _stats.Health;
-    public float DelayAttack => _delayAttcak;
+    public float DelayAttack => _weapon.DelayAttack;
     public int ChanceSpawn => _stats.ChanceSpawn;
 
     private void Awake()
@@ -45,7 +46,7 @@ public class Entity : MonoBehaviour
     public void SetTarget(Transform target)
     {
         _target = target.GetComponent<Entity>();
-        _timer.StartWork(_delayAttcak);
+        _timer.StartWork(DelayAttack);
     }
 
     public void ApplyDamage(int damage)
@@ -79,23 +80,25 @@ public class Entity : MonoBehaviour
         _armor = _stats.Armor;
         _damage = _stats.Damage;
         _damageReductionPercentage = _stats.DamageReductionPercentage;
-        _delayAttcak = _stats.DelayAttack;
+        
     }
 
     private void Attack()
     {
         if (_target != null)
         {
+            _timer.StartWork(DelayAttack);
             _target.ApplyDamage(_damage);
-            _timer.StartWork(_delayAttcak);
         }
     }
 
     private void Die()
     {
+        float destroyTime = 2f;
         Died?.Invoke();
-        _rigidbody2d.isKinematic = false;
         enabled = false;
-        Destroy(gameObject,2);
+        _rigidbody2d.isKinematic = false;
+        _rigidbody2d.AddForce(transform.position - _target.transform.position * 10);
+        Destroy(gameObject, destroyTime);
     }
 }
