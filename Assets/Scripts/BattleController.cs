@@ -1,18 +1,36 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class BattleController : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField] private Button _ButtonStartBattle;
+    [SerializeField] private Button _ButtonLeaveBattle;
+    [SerializeField] private Player _player;
+    [SerializeField] private Spawner _spawner;
+
+    private void OnEnable()
     {
-        
+        _ButtonStartBattle.onClick.AddListener(StartBattle);
+        _ButtonLeaveBattle.onClick.AddListener(LeaveBattle);
     }
 
-    // Update is called once per frame
-    void Update()
+    private void OnDisable()
     {
-        
+        _ButtonStartBattle.onClick.RemoveListener(StartBattle);
+        _ButtonLeaveBattle.onClick.RemoveListener(LeaveBattle);
+    }
+
+    private void StartBattle()
+    {
+        _player.enabled = true;
+        _spawner.enabled = true;
+    }
+
+    private void LeaveBattle()
+    {
+        _player.enabled = false;
+        _spawner.enabled = false;
     }
 }

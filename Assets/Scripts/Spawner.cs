@@ -1,6 +1,4 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Spawner : MonoBehaviour
@@ -15,13 +13,9 @@ public class Spawner : MonoBehaviour
 
     public Action<Transform> EnemySpawned;
 
-    private void Start()
-    {
-        Spawn();
-    }
-
     private void OnEnable()
     {
+        Spawn();
         _timer.TimeEmpty += Spawn;
     }
 

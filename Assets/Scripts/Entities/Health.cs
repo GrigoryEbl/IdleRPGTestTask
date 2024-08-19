@@ -30,6 +30,12 @@ public class Health : MonoBehaviour
         ArmorChanged?.Invoke(_armor);
     }
 
+    public void RestoreHealth()
+    {
+        _health = MaxHealth;
+        HealthChanged?.Invoke(_health);
+    }
+
     public void ApplyDamage(int damage)
     {
         float absorbedDamage = damage * _damageReductionPercentage;
@@ -54,12 +60,14 @@ public class Health : MonoBehaviour
             Die();
         }
     }
+
     private void InitStats()
     {
         _health = _stats.Health;
         _armor = _stats.Armor;
         _damageReductionPercentage = _stats.DamageReductionPercentage;
     }
+
     private void Die()
     {
         float destroyTime = 2f;
