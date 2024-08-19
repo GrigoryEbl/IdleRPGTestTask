@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f71d33e01d803645b54b369072d00f5, type: 3}
   m_Name: EnemyBlack
   m_EditorClassIdentifier: 
-  _health: 10
-  _armor: 5
+  _health: 40
+  _armor: 15
   _damageReductionPercentage: 0.2
-  _damage: 3
-  _delayAttack: 4
+  _damage: 8
   _chanceSpawn: 20
+  _preparingAttackTime: 3

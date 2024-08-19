@@ -49,6 +49,7 @@ public class Health : MonoBehaviour
         {
             _armor = 0;
             finalDamage += Mathf.Abs(_armor);
+            ArmorChanged?.Invoke(_armor);
         }
 
         _health -= (int)finalDamage;

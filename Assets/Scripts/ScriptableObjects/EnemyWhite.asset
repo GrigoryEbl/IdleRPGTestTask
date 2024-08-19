@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f71d33e01d803645b54b369072d00f5, type: 3}
   m_Name: EnemyWhite
   m_EditorClassIdentifier: 
-  _health: 5
+  _health: 15
   _armor: 0
   _damageReductionPercentage: 0
   _damage: 1
-  _delayAttack: 3
   _chanceSpawn: 100
+  _preparingAttackTime: 3

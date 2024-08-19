@@ -32,5 +32,6 @@ public class BattleController : MonoBehaviour
     {
         _player.enabled = false;
         _spawner.enabled = false;
+        Destroy(_spawner.GetComponentInChildren<Entity>().gameObject);
     }
 }
