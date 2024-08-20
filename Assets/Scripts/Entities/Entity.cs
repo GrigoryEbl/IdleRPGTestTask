@@ -50,6 +50,11 @@ public class Entity : MonoBehaviour
         AttackPreparing?.Invoke(PreparingAttackTime);
     }
 
+    public void StopAttack()
+    {
+        _timerPreparingAttcak.StopWork();
+    }
+
     private void InitStats()
     {
         _damage = _stats.Damage;

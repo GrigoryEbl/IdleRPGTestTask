@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,6 +10,8 @@ public class WeaponSwitcher : MonoBehaviour
 
     private Player _player;
     private float _delay = 2f;
+
+    public Action<float> WeaponSwitch;
 
     private void Awake()
     {
@@ -23,6 +26,8 @@ public class WeaponSwitcher : MonoBehaviour
 
     public void SwitchWeapon()
     {
+        WeaponSwitch?.Invoke(_delay);
+        StopAllCoroutines();
         StartCoroutine(Process());
     }
 

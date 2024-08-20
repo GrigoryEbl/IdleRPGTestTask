@@ -3,22 +3,26 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class CooldownAttackView : MonoBehaviour
+public class CooldownSliderView : MonoBehaviour
 {
     [SerializeField] private Entity _entity;
+    [SerializeField] private WeaponSwitcher _weaponSwitcher;
     [SerializeField] private Slider _sliderAttack;
     [SerializeField] private Slider _sliderPreparingAttack;
+    [SerializeField] private Slider _sliderChangeWeapon;
 
     private void OnEnable()
     {
         _entity.AttackPreparing += OnAttackPreparing;
         _entity.Attacked += OnAttack;
+        _weaponSwitcher.WeaponSwitch += OnSwitchWeapon;
     }
 
     private void OnDisable()
     {
         _entity.AttackPreparing -= OnAttackPreparing;
         _entity.Attacked -= OnAttack;
+        _weaponSwitcher.WeaponSwitch -= OnSwitchWeapon;
     }
 
     private void OnAttackPreparing(float delay)
@@ -34,6 +38,14 @@ public class CooldownAttackView : MonoBehaviour
         _sliderAttack.maxValue = delay;
         StartCoroutine(Process( _sliderAttack, delay));
     }
+
+    private void OnSwitchWeapon(float delay)
+    {
+        _sliderChangeWeapon.gameObject.SetActive(true);
+        _sliderChangeWeapon.maxValue = delay;
+        StartCoroutine(Process(_sliderChangeWeapon, delay));
+    }
+
     private IEnumerator Process(Slider slider, float delay)
     {
         float startValue = 0; 
@@ -46,10 +58,8 @@ public class CooldownAttackView : MonoBehaviour
             slider.value = Mathf.Lerp(startValue, endValue, elapsedTime / delay);
             yield return null; 
         }
-
-        
+         
         slider.value = endValue;
-
         slider.gameObject.SetActive(false);
 
         yield return null;
