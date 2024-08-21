@@ -1,40 +1,42 @@
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using Entities;
 
-public class DefendView : MonoBehaviour
+namespace UI
 {
-    [SerializeField] private TMP_Text _healthText;
-    [SerializeField] private TMP_Text _armorText;
-
-    private Health _health;
-
-    private void Awake()
+    public class DefendView : MonoBehaviour
     {
-        _health = GetComponentInParent<Health>();
-    }
+        [SerializeField] private TMP_Text _healthText;
+        [SerializeField] private TMP_Text _armorText;
 
-    private void OnEnable()
-    {
-        _health.HealthChanged += OnHealthChanged;
-        _health.ArmorChanged += OnArmorChanged;
-        _healthText.text = $"{_health.MaxHealth}";
-    }
+        private Health _health;
 
-    private void OnDisable()
-    {
-        _health.HealthChanged -= OnHealthChanged;
-        _health.ArmorChanged -= OnArmorChanged;
-    }
+        private void Awake()
+        {
+            _health = GetComponentInParent<Health>();
+        }
 
-    private void OnHealthChanged(int value)
-    {
-        _healthText.text = $"Health: {value} / {_health.MaxHealth}";
-    }
+        private void OnEnable()
+        {
+            _health.HealthChanged += OnHealthChanged;
+            _health.ArmorChanged += OnArmorChanged;
+            _healthText.text = $"{_health.MaxHealth}";
+        }
 
-    private void OnArmorChanged(int value)
-    {
-        _armorText.text = $"Armor: {value}";
+        private void OnDisable()
+        {
+            _health.HealthChanged -= OnHealthChanged;
+            _health.ArmorChanged -= OnArmorChanged;
+        }
+
+        private void OnHealthChanged(int value)
+        {
+            _healthText.text = $"Health: {value} / {_health.MaxHealth}";
+        }
+
+        private void OnArmorChanged(int value)
+        {
+            _armorText.text = $"Armor: {value}";
+        }
     }
 }

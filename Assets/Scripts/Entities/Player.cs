@@ -1,24 +1,27 @@
 using System;
 using UnityEngine;
 
-public class Player : Entity
+namespace Entities
 {
-    [SerializeField] private Spawner _spawner;
-
-    private void OnEnable()
+    public class Player : Entity
     {
-        _spawner.EnemySpawned += SetTarget;
-    }
+        [SerializeField] private Spawner _spawner;
 
-    private void OnDisable()
-    {
-        _spawner.EnemySpawned -= SetTarget;
-    }
+        private void OnEnable()
+        {
+            _spawner.EnemySpawned += SetTarget;
+        }
 
-    public override void Die()
-    {
-        Died?.Invoke();
-        base.Die();
-        enabled = false;
+        private void OnDisable()
+        {
+            _spawner.EnemySpawned -= SetTarget;
+        }
+
+        public override void Die()
+        {
+            Died?.Invoke();
+            base.Die();
+            enabled = false;
+        }
     }
 }

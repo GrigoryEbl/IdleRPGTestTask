@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using Entities;
 
 public class Spawner : MonoBehaviour
 {
