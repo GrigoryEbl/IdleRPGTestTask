@@ -15,7 +15,8 @@ public class Entity : MonoBehaviour
 
     public Action<float> AttackPreparing;
     public Action<float> Attacked;
-   
+    public Action Died;
+
     public Weapon CurrentWeapon => _weapon;
     public float DelayAttack => _weapon.DelayAttack;
     public int ChanceSpawn => _stats.ChanceSpawn;
@@ -37,6 +38,8 @@ public class Entity : MonoBehaviour
         _timerPreparingAttack.TimeEmpty -= PreparingAttack;
         _timerAttack.TimeEmpty -= Attack;
     }
+
+    public virtual void Die() { }
 
     public void ChangeWeapon(Weapon weapon)
     {

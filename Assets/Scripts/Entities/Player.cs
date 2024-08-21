@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class Player : Entity
@@ -12,5 +13,11 @@ public class Player : Entity
     private void OnDisable()
     {
         _spawner.EnemySpawned -= SetTarget;
+    }
+
+    public override void Die()
+    {
+        Died?.Invoke();
+        enabled = false;
     }
 }

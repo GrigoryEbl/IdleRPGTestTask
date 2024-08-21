@@ -250,6 +250,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _stats: {fileID: 11400000, guid: 876aa13c0d7652a48ad0074f90998ebc, type: 2}
+  _entity: {fileID: 1672980069674159791}
 --- !u!1 &3869443591185319666
 GameObject:
   m_ObjectHideFlags: 0

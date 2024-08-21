@@ -21,7 +21,7 @@ public class Spawner : MonoBehaviour
 
     private void OnDisable()
     {
-        _spawnedEnemy.GetComponent<Health>().Died -= OnEnemyDied;
+        _spawnedEnemy.Died -= OnEnemyDied;
         _timer.TimeEmpty -= Spawn;
     }
 
@@ -34,7 +34,7 @@ public class Spawner : MonoBehaviour
 
         EnemySpawned?.Invoke(enemy.transform);
 
-        enemy.GetComponent<Health>().Died += OnEnemyDied;
+        enemy.Died += OnEnemyDied;
     }
 
     private int GetRandomChance()
