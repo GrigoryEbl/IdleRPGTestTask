@@ -10,7 +10,6 @@ public class Entity : MonoBehaviour
     [SerializeField] private Weapon _weapon;
 
     private Entity _target;
-    private int _damage;
 
     public Action<float> AttackPreparing;
     public Action AttackPrepared;
@@ -24,11 +23,6 @@ public class Entity : MonoBehaviour
     public float DelayAttack => _weapon.DelayAttack;
     public int ChanceSpawn => _stats.ChanceSpawn;
     public float PreparingAttackTime => _stats.PreparingAttackTime;
-
-    private void Awake()
-    {
-        InitStats();
-    }
 
     private void Start()
     {
@@ -66,11 +60,6 @@ public class Entity : MonoBehaviour
         _timerPreparingAttack.StopWork();
     }
 
-    private void InitStats()
-    {
-        _damage = _stats.Damage;
-    }
-
     private void PreparingAttack()
     {
         _timerAttack.StartWork(DelayAttack);
@@ -81,7 +70,7 @@ public class Entity : MonoBehaviour
     {
         if (_target != null)
         {
-            _target.GetComponent<Health>().ApplyDamage(_damage);
+            _target.GetComponent<Health>().ApplyDamage(_stats.Damage);
 
             if (_target.IsDied == false)
             {
