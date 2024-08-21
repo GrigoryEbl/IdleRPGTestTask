@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6f71d33e01d803645b54b369072d00f5, type: 3}
-  m_Name: PlayerStats
+  m_Name: EnemyWhite
   m_EditorClassIdentifier: 
-  _health: 284
-  _armor: 5
-  _damageReductionPercentage: 0.2
-  _damage: 6
-  _chanceSpawn: 0
+  _health: 15
+  _armor: 0
+  _damageReductionPercentage: 0
+  _damage: 1
+  _chanceSpawn: 100
   _preparingAttackTime: 3
