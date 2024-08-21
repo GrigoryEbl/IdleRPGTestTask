@@ -18,6 +18,7 @@ public class Player : Entity
     public override void Die()
     {
         Died?.Invoke();
+        base.Die();
         enabled = false;
     }
 }

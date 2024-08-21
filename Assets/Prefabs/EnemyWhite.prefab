@@ -250,7 +250,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _stats: {fileID: 11400000, guid: 876aa13c0d7652a48ad0074f90998ebc, type: 2}
-  _entity: {fileID: 1672980069674159791}
 --- !u!1 &3869443591185319666
 GameObject:
   m_ObjectHideFlags: 0
@@ -699,7 +698,7 @@ GameObject:
   - component: {fileID: 6490754367214436708}
   - component: {fileID: 8923057575576056123}
   - component: {fileID: 8303794738158739630}
-  - component: {fileID: 9073137802969517367}
+  - component: {fileID: 8993964287389981989}
   m_Layer: 0
   m_Name: Canvas
   m_TagString: Untagged
@@ -820,11 +819,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _entity: {fileID: 1672980069674159791}
-  _weaponSwitcher: {fileID: 9073137802969517367}
+  _weaponSwitcher: {fileID: 8993964287389981989}
   _sliderAttack: {fileID: 4428221058681916938}
   _sliderPreparingAttack: {fileID: 7944582238308196198}
   _sliderChangeWeapon: {fileID: 7944582238308196198}
---- !u!114 &9073137802969517367
+--- !u!114 &8993964287389981989
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

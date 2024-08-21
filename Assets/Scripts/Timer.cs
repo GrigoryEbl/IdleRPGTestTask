@@ -1,6 +1,4 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Timer : MonoBehaviour
@@ -11,6 +9,7 @@ public class Timer : MonoBehaviour
     public Action TimeEmpty;
 
     public float CurrentTime => _time;
+    public bool IsWork => _isWork;
 
     private void Update()
     {

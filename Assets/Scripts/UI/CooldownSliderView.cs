@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -14,14 +13,14 @@ public class CooldownSliderView : MonoBehaviour
     private void OnEnable()
     {
         _entity.AttackPreparing += OnAttackPreparing;
-        _entity.Attacked += OnAttack;
+        _entity.Attacking += OnAttack;
         _weaponSwitcher.WeaponSwitch += OnSwitchWeapon;
     }
 
     private void OnDisable()
     {
         _entity.AttackPreparing -= OnAttackPreparing;
-        _entity.Attacked -= OnAttack;
+        _entity.Attacking -= OnAttack;
         _weaponSwitcher.WeaponSwitch -= OnSwitchWeapon;
     }
 

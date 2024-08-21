@@ -1,4 +1,3 @@
-
 using System;
 using UnityEngine;
 
@@ -10,13 +9,17 @@ public class Entity : MonoBehaviour
     [SerializeField] private Timer _timerPreparingAttack;
     [SerializeField] private Weapon _weapon;
 
-    private Entity _target;    
+    private Entity _target;
     private int _damage;
 
     public Action<float> AttackPreparing;
-    public Action<float> Attacked;
+    public Action AttackPrepared;
+    public Action<float> Attacking;
+    public Action AttackFinished;
     public Action Died;
 
+    public bool IsDied { get; private set; }
+    public float AttackTimeLeft => _timerAttack.CurrentTime;
     public Weapon CurrentWeapon => _weapon;
     public float DelayAttack => _weapon.DelayAttack;
     public int ChanceSpawn => _stats.ChanceSpawn;
@@ -39,11 +42,15 @@ public class Entity : MonoBehaviour
         _timerAttack.TimeEmpty -= Attack;
     }
 
-    public virtual void Die() { }
+    public virtual void Die()
+    {
+        IsDied = true;
+    }
 
     public void ChangeWeapon(Weapon weapon)
     {
         _weapon = weapon;
+        StopAttack();
         _timerPreparingAttack.StartWork(PreparingAttackTime);
     }
 
@@ -57,7 +64,6 @@ public class Entity : MonoBehaviour
     public void StopAttack()
     {
         _timerPreparingAttack.StopWork();
-        _timerAttack.StopWork();
     }
 
     private void InitStats()
@@ -68,7 +74,7 @@ public class Entity : MonoBehaviour
     private void PreparingAttack()
     {
         _timerAttack.StartWork(DelayAttack);
-        Attacked?.Invoke(DelayAttack);
+        Attacking?.Invoke(DelayAttack);
     }
 
     private void Attack()
@@ -76,8 +82,12 @@ public class Entity : MonoBehaviour
         if (_target != null)
         {
             _target.GetComponent<Health>().ApplyDamage(_damage);
-            _timerPreparingAttack.StartWork(PreparingAttackTime);
-            AttackPreparing?.Invoke(PreparingAttackTime);
+
+            if (_target.IsDied == false)
+            {
+                _timerPreparingAttack.StartWork(PreparingAttackTime);
+                AttackPreparing?.Invoke(PreparingAttackTime);
+            }
         }
     }
 }

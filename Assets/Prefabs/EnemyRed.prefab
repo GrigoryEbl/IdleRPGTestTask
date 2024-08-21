@@ -453,7 +453,7 @@ GameObject:
   - component: {fileID: 6708842375441250123}
   - component: {fileID: 2960008795163909512}
   - component: {fileID: 98263753502777342}
-  - component: {fileID: 3216477415343610186}
+  - component: {fileID: 1568533690480463575}
   m_Layer: 0
   m_Name: 'Canvas '
   m_TagString: Untagged
@@ -574,11 +574,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _entity: {fileID: 1672980069674159791}
-  _weaponSwitcher: {fileID: 3216477415343610186}
+  _weaponSwitcher: {fileID: 1568533690480463575}
   _sliderAttack: {fileID: 4814370760450107407}
   _sliderPreparingAttack: {fileID: 1016329570666712445}
   _sliderChangeWeapon: {fileID: 1016329570666712445}
---- !u!114 &3216477415343610186
+--- !u!114 &1568533690480463575
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

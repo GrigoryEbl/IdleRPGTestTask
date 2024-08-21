@@ -1,8 +1,6 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(Rigidbody2D))]
 public class Enemy : Entity
 {
     private Rigidbody2D _rigidbody2d;
@@ -14,6 +12,7 @@ public class Enemy : Entity
 
     public override void Die()
     {
+        base.Die();
         float destroyDelay = 2f;
         Died?.Invoke();
         enabled = false;

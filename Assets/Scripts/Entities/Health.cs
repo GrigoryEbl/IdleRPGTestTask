@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-[RequireComponent(typeof(Rigidbody2D))]
+[RequireComponent(typeof(Entity))]
 public class Health : MonoBehaviour
 {
     [SerializeField] private Stats _stats;
@@ -42,7 +42,7 @@ public class Health : MonoBehaviour
         float finalDamage = damage - (int)absorbedDamage;
         _armor = Mathf.Clamp(_armor, 0, _stats.Armor);
 
-        finalDamage += Mathf.Abs(_armor);
+        //finalDamage += Mathf.Abs(_armor);
         ArmorChanged?.Invoke(_armor);
 
         _health -= (int)finalDamage;
