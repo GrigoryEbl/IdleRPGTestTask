@@ -7,7 +7,7 @@ public class Entity : MonoBehaviour
 {
     [SerializeField] private Stats _stats;
     [SerializeField] private Timer _timerAttack;
-    [SerializeField] private Timer _timerPreparingAttcak;
+    [SerializeField] private Timer _timerPreparingAttack;
     [SerializeField] private Weapon _weapon;
 
     private Entity _target;    
@@ -28,31 +28,33 @@ public class Entity : MonoBehaviour
 
     private void Start()
     {
-        _timerPreparingAttcak.TimeEmpty += PreparingAttack;
+        _timerPreparingAttack.TimeEmpty += PreparingAttack;
         _timerAttack.TimeEmpty += Attack;
     }
 
     private void OnDisable()
     {
-        _timerPreparingAttcak.TimeEmpty -= PreparingAttack;
+        _timerPreparingAttack.TimeEmpty -= PreparingAttack;
         _timerAttack.TimeEmpty -= Attack;
     }
 
     public void ChangeWeapon(Weapon weapon)
     {
         _weapon = weapon;
+        _timerPreparingAttack.StartWork(PreparingAttackTime);
     }
 
     public void SetTarget(Transform target)
     {
         _target = target.GetComponent<Entity>();
-        _timerPreparingAttcak.StartWork(PreparingAttackTime);
+        _timerPreparingAttack.StartWork(PreparingAttackTime);
         AttackPreparing?.Invoke(PreparingAttackTime);
     }
 
     public void StopAttack()
     {
-        _timerPreparingAttcak.StopWork();
+        _timerPreparingAttack.StopWork();
+        _timerAttack.StopWork();
     }
 
     private void InitStats()
@@ -71,7 +73,7 @@ public class Entity : MonoBehaviour
         if (_target != null)
         {
             _target.GetComponent<Health>().ApplyDamage(_damage);
-            _timerPreparingAttcak.StartWork(PreparingAttackTime);
+            _timerPreparingAttack.StartWork(PreparingAttackTime);
             AttackPreparing?.Invoke(PreparingAttackTime);
         }
     }

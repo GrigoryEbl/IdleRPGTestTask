@@ -432,7 +432,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _stats: {fileID: 11400000, guid: fdf8311779086f840a3eb6ca0511318f, type: 2}
   _timerAttack: {fileID: 1988357777873738875}
-  _timerPreparingAttcak: {fileID: 6980778467673491755}
+  _timerPreparingAttack: {fileID: 6980778467673491755}
   _weapon: {fileID: 8089865146806591398}
 --- !u!114 &1988357777873738875
 MonoBehaviour:

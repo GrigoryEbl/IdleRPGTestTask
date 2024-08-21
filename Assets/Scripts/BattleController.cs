@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -10,16 +8,25 @@ public class BattleController : MonoBehaviour
     [SerializeField] private Player _player;
     [SerializeField] private Spawner _spawner;
 
+    private Health _death;
+
+    private void Awake()
+    {
+        _death = _player.GetComponent<Health>();
+    }
+
     private void OnEnable()
     {
         _ButtonStartBattle.onClick.AddListener(StartBattle);
         _ButtonLeaveBattle.onClick.AddListener(LeaveBattle);
+        _death.Died += LeaveBattle;
     }
 
     private void OnDisable()
     {
         _ButtonStartBattle.onClick.RemoveListener(StartBattle);
         _ButtonLeaveBattle.onClick.RemoveListener(LeaveBattle);
+        _death.Died -= LeaveBattle;
     }
 
     private void StartBattle()

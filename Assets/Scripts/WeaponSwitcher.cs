@@ -26,6 +26,7 @@ public class WeaponSwitcher : MonoBehaviour
 
     public void SwitchWeapon()
     {
+        _player.StopAttack();
         WeaponSwitch?.Invoke(_delay);
         StopAllCoroutines();
         StartCoroutine(Process());

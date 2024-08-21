@@ -41,26 +41,21 @@ public class Health : MonoBehaviour
         float absorbedDamage = damage * _damageReductionPercentage;
 
         _armor -= (int)absorbedDamage;
-        ArmorChanged?.Invoke(_armor);
 
         float finalDamage = damage - (int)absorbedDamage;
 
-        if (_armor < 0)
-        {
-            _armor = 0;
-            finalDamage += Mathf.Abs(_armor);
-            ArmorChanged?.Invoke(_armor);
-        }
+        _armor = Mathf.Clamp(_armor, 0, _stats.Armor);
+
+        finalDamage += Mathf.Abs(_armor);
+
+        ArmorChanged?.Invoke(_armor);
 
         _health -= (int)finalDamage;
+        _health = Mathf.Clamp(_health, 0, MaxHealth);
         HealthChanged?.Invoke(_health);
 
         if (_health <= 0)
-        {
-            _health = 0;
-            HealthChanged?.Invoke(_health);
             Die();
-        }
     }
 
     private void InitStats()
@@ -72,11 +67,10 @@ public class Health : MonoBehaviour
 
     private void Die()
     {
-        float destroyTime = 2f;
+        float destroyDelay = 2f;
         Died?.Invoke();
         enabled = false;
         _rigidbody2d.isKinematic = false;
-        _rigidbody2d.AddForce(transform.right * 10);
-        Destroy(gameObject, destroyTime);
+        Destroy(gameObject, destroyDelay);
     }
 }
